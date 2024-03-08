@@ -16,7 +16,8 @@
     "express-rate-limit": "^7.2.0",
     "fast-two-sms": "^1.0.4",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.2.1"
+    "mongoose": "^8.2.1",
+    "uuid": "^7.0.3"
   },
   "devDependencies": {
     "morgan": "^1.10.0",

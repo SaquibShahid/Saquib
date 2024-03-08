@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
-
+const rateLimit = require('express-rate-limit');
 
 const { PORT, MONGODB_URI, NODE_ENV,ORIGIN } = require("./config");
 const { API_ENDPOINT_NOT_FOUND_ERR, SERVER_ERR } = require("./errors");
@@ -43,6 +43,18 @@ app.get("/", (req, res) => {
     data: null,
   });
 });
+
+// rate limiting
+
+const limiter = rateLimit({
+  windowMs: 5 * 60 * 1000, // 5 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: 'Too many requests from this IP, please try again later.',
+});
+
+//app.use(limiter);         // for all app requests
+app.use("/api/auth" , limiter);
+
 
 // routes middlewares
 

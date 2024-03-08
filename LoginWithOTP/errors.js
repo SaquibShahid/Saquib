@@ -16,3 +16,5 @@ exports.ACCESS_DENIED_ERR = "Access deny for normal user";
 exports.PHONE_ALREADY_EXISTS_ERR = "phone already exists"; 
 
 exports.INCORRECT_OTP_ERR = "Incorrect otp"
+
+exports.USED_OTP_ERR = "Used otp"

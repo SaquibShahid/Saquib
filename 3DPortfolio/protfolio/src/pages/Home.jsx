@@ -1,15 +1,29 @@
 import {Canvas} from '@react-three/fiber';
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import Loader from '../components/Loader';
 import Island from '../models/island';
 import Sky from '../models/Sky';
 import Bird from '../models/Bird';
 import Plane from '../models/Plane';
 import HomeInfo from '../components/HomeInfo';
+import sakura from '../assets/sakura.mp3';
 
 const Home = () => {
+  const audioRef = useRef(new Audio(sakura));
+  audioRef.current.volume = 0.4;
+  audioRef.current.loop = true;
   const [isRotating, setIsRotating] = useState(false);
   const [currentStage, setCurrentStage] = useState(1);
+  const [isPlaying, setIsPlaying] = useState(false)
+
+  useEffect(()=>{
+    if(isPlaying){
+      audioRef.current.play();
+    }
+    return = () =>{
+      audioRef.current.pause();
+    }
+  },[isPlaying])
 
   const adjustIslandScaleWithScreen = () =>{
     let screenScale = null;
